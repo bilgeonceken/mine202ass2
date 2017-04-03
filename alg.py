@@ -36,10 +36,16 @@ class Ore(object):
     def __repr__(self):
         return "O"
 
-## 20 column (with zero blocks)
-## 13 row (with zero blocks)
+## 20 column (including zero blocks)
+## 13 row (including zero blocks)
 
+## Initiates our 2d array which will hold the block objects
 real = [[0 for z in range(20)] for g in range(12)]
+
+
+## Filling first row and first column with zero blocks
+## Their their cbv and tbv values will used as a foundation
+## when calculating the rest
 
 ## Fills the first column with Zero blocks
 for i in range(20):
@@ -51,6 +57,8 @@ for i in range(12):
 
 ## Stores the block objects in a 2d array while
 ## calculating their ebv, cbv and tbv values.
+## We have to do it column by to column to be able to
+## make tbv calculation.  
 ## Later(ln. 90) we will pull the data from this objects to
 ## put in subplots, which is the way we present the data.
 for i in range(1,20):
