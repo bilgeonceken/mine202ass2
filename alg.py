@@ -49,8 +49,10 @@ for i in range(20):
 for i in range(12):
     real[i][0] = Zero(0,i)
 
-## Fills rest of the grid with ebv, cbv and tbv values
-## Goes column by column
+## Stores the block objects in a 2d array while
+## calculating their ebv, cbv and tbv values.
+## Later(ln. 90) we will pull the data from this objects to
+## put in subplots, which is the way we present the data.
 for i in range(1,20):
     for k in range(1,12):
         if (8<=i<=12) and (k>=3):
@@ -69,16 +71,22 @@ for i in range(1,20):
                 real[k][i].tbv = real[k][i].cbv + max(real[k-1][i-1].tbv, real[k][i-1].tbv, real[k+1][i-1].tbv)
 
 
-## To present the data in an eye pleasing way i used plotlib.
+                    ####
+## To present the data in an eye pleasing way plotlib library has been used
+.
 ## Shows the ebv, cbv and tbv values of every block in a seperate subplot.
 ## Margin is set to 0 so that all thing looks like a grid
-
+                    ####
+    
+    
 ## Creates a 2d array to store subplots
 layout = [[0 for z in range(20)] for g in range(12)]
 
 # plot counter
 i=1
 
+## Takes the relevant data from the block objects and
+## puts them in subplots
 for y in range(12):
     for x in range(20):
         layout[y][x] = plt.subplot(12,20,i)
@@ -90,10 +98,10 @@ for y in range(12):
                           size=9, alpha=1.0 )
         layout[y][x].set_xticklabels([])
         layout[y][x].set_yticklabels([])
+        ## color the ore part
         if (8<=x<=12) and (y>=3):
             layout[y][x].set_facecolor("grey")
         i+=1
-
 
 plt.xticks(())
 plt.yticks(())
