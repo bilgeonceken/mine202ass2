@@ -36,20 +36,21 @@ class Ore(object):
     def __repr__(self):
         return "O"
 
-## 20 column with zeros
-## 13 row with zeros
+## 20 column (with zero blocks)
+## 13 row (with zero blocks)
 
 real = [[0 for z in range(20)] for g in range(12)]
 
-##COLUMN
+## Fills the first column with Zero blocks
 for i in range(20):
     real[0][i] = Zero(i,0)
 
-## ROW
+## Fills the first row with Zero blocks
 for i in range(12):
     real[i][0] = Zero(0,i)
 
-## NEXT COLUMNS
+## Fills rest of the grid with ebv, cbv and tbv values
+## Goes column by column
 for i in range(1,20):
     for k in range(1,12):
         if (8<=i<=12) and (k>=3):
@@ -68,33 +69,29 @@ for i in range(1,20):
                 real[k][i].tbv = real[k][i].cbv + max(real[k-1][i-1].tbv, real[k][i-1].tbv, real[k+1][i-1].tbv)
 
 
+## To present the data in an eye pleasing way i used plotlib.
+## Shows the ebv, cbv and tbv values of every block in a seperate subplot.
+## Margin is set to 0 so that all thing looks like a grid
+
+## Creates a 2d array to store subplots
 layout = [[0 for z in range(20)] for g in range(12)]
+
+# plot counter
 i=1
+
 for y in range(12):
     for x in range(20):
-        # layout[y][x] = Ore(x,y)
         layout[y][x] = plt.subplot(12,20,i)
         layout[y][x].text(0.1, 0.8, "EBV: "+str(real[y][x].ebv),
-                        #   ha='center',
-                        #   va='center',
                           size=9, alpha=1.0 )
-        # layout[y][x].text(0.1, 0.4, "POS: "+Ore(x,y).get_pos(),
-        #                 #   ha='center',
-        #                 #   va='center',
-        #                   size=7, alpha=1.0 )
         layout[y][x].text(0.1, 0.6, "CBV: "+str(real[y][x].cbv),
-                        #   ha='center',
-                        #   va='center',
                           size=9, alpha=1.0 )
         layout[y][x].text(0.1, 0.4, "TBV: "+str(real[y][x].tbv),
-                        #   ha='center',
-                        #   va='center',
                           size=9, alpha=1.0 )
         layout[y][x].set_xticklabels([])
         layout[y][x].set_yticklabels([])
         if (8<=x<=12) and (y>=3):
             layout[y][x].set_facecolor("grey")
-
         i+=1
 
 
