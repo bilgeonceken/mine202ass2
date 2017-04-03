@@ -81,7 +81,6 @@ for i in range(1,20):
 
                     ####
 ## To present the data in an eye pleasing way plotlib library has been used
-.
 ## Shows the ebv, cbv and tbv values of every block in a seperate subplot.
 ## Margin is set to 0 so that all thing looks like a grid
                     ####
