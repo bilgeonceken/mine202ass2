@@ -37,7 +37,7 @@ class Ore(object):
         return "O"
 
 ## 20 column (including zero blocks)
-## 13 row (including zero blocks)
+## 12 row (including zero blocks)
 
 ## Initiates our 2d array which will hold the block objects
 real = [[0 for z in range(20)] for g in range(12)]
