@@ -108,6 +108,8 @@ for y in range(12):
         ## color the ore part
         if (8<=x<=12) and (y>=3):
             layout[y][x].set_facecolor("grey")
+        elif (x==0) or (y==0):
+            layout[y][x].set_facecolor("beige")
         i+=1
 
 plt.xticks(())
