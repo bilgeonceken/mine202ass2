@@ -13,6 +13,7 @@ class Zero(object):
     def __repr__(self):
         return "-"
 
+    
 class Waste(object):
     def __init__(self, x, y):
         self.x = x
@@ -36,12 +37,12 @@ class Ore(object):
     def __repr__(self):
         return "O"
 
+    
 ## 20 column (including zero blocks)
 ## 12 row (including zero blocks)
 
 ## Initiates our 2d array which will hold the block objects
 real = [[0 for z in range(20)] for g in range(12)]
-
 
 ## Filling first row and first column with zero blocks
 ## Their their cbv and tbv values will used as a foundation
@@ -78,13 +79,11 @@ for i in range(1,20):
             else:
                 real[k][i].tbv = real[k][i].cbv + max(real[k-1][i-1].tbv, real[k][i-1].tbv, real[k+1][i-1].tbv)
 
-
                     ####
 ## To present the data in an eye pleasing way plotlib library has been used
 ## Shows the ebv, cbv and tbv values of every block in a seperate subplot.
 ## Margin is set to 0 so that all thing looks like a grid
                     ####
-    
     
 ## Creates a 2d array to store subplots
 layout = [[0 for z in range(20)] for g in range(12)]
@@ -108,6 +107,8 @@ for y in range(12):
         ## color the ore part
         if (8<=x<=12) and (y>=3):
             layout[y][x].set_facecolor("grey")
+        ## color the zero boxes that we add as padding
+        ## (which was necessary for the calculations of course)
         elif (x==0) or (y==0):
             layout[y][x].set_facecolor("beige")
         i+=1
